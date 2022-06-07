@@ -1,0 +1,32 @@
+version: "3.4"
+
+services:
+  web:
+    image: ambientum/php:7.4-nginx
+    container_name: financer
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/app:delegated
+      - ./docker-compose/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./docker-compose/nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - 8002:8080
+    depends_on:
+      - db
+    environment:
+      - PHP_MEMORY_LIMIT=-1
+      - COMPOSER_MEMORY_LIMIT=-1
+  db:
+    container_name: mysql-financer
+    image: mysql:5.7
+    restart: unless-stopped
+    ports:
+      - "5807:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: financer_api
+    # volumes:
+    #   - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+volumes:
+  financer-data:
+    driver: local
