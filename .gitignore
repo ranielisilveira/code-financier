@@ -7,3 +7,5 @@ Homestead.json
 Homestead.yaml
 .env
 .env.example
+package-lock.json
+package.json
