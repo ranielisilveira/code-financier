@@ -13,5 +13,8 @@
     "vue": "^1.0.26",
     "vue-resource": "^1.0.3",
     "vue-router": "^0.7.13"
+  },
+  "dependencies": {
+    "laravel-elixir-browsersync-official": "^1.0.0"
   }
 }

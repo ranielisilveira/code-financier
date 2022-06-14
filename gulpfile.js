@@ -13,8 +13,13 @@ require('laravel-elixir-vue');
  |
  */
 
-elixir((mix) => {
+elixir(mix => {
     mix.sass('./resources/assets/admin/sass/admin.scss')
     .copy('./node_modules/materialize-css/fonts/roboto', './public/fonts/roboto');
-       //.webpack('app.js');
+
+    mix.browserSync({
+        host: 'localhost',
+        proxy: 'http://localhost:8002/',
+
+    });
 });
